@@ -3,42 +3,87 @@ import { useI18n } from 'vue-i18n'
 import { computed, ref } from 'vue'
 import Select from 'primevue/select'
 import ProjectCard from '@/components/cards/ProjectCard.vue'
-import { PROJETOS } from '@/data/Projetos'
-import { TECH_DATABASE } from '@/data/Tecnologias'
+
+import QUERY_PROJETOS, { type ProjetoDTO } from '@/data/Projetos'
+import type {
+  LanguageDTO, RuntimeDTO, DatabaseDTO, FrameworkDTO, 
+  LibraryDTO, ToolDTO, CloudPlatformDTO
+} from '@/data/Tecnologias/index'
 
 const { t } = useI18n()
 
-const allProjects = computed(() => Object.values(PROJETOS))
+const allProjects: ProjetoDTO[] = QUERY_PROJETOS.getAllProjects()
 
-// Build tech filter options
+// Build tech filter options from all technologies used in projects
 const techOptions = computed(() => {
-  const usedTechIds = new Set(allProjects.value.flatMap((p) => p.technologies))
-  const options: { label: string; value: string }[] = []
+  const techMap = new Map<string, string>()
 
-  for (const techId of usedTechIds) {
-    for (const category of Object.values(TECH_DATABASE)) {
-      if (techId in category) {
-        const item = (category as Record<string, { nickname: string }>)[techId]
-        if (item?.nickname) {
-          options.push({
-            label: item.nickname,
-            value: techId,
-          })
-        }
-        break
-      }
-    }
+  // Collect all unique technologies with their nicknames
+  for (const project of allProjects) {
+    if (!project) continue
+    
+    // Language
+    project.languages?.forEach((lang: LanguageDTO) => {
+      if (lang?.nickname) techMap.set(lang.nickname, lang.nickname)
+    })
+    
+    // Runtimes
+    project.runtimes?.forEach((runtime: RuntimeDTO) => {
+      if (runtime?.nickname) techMap.set(runtime.nickname, runtime.nickname)
+    })
+    
+    // Databases
+    project.databases?.forEach((db: DatabaseDTO) => {
+      if (db?.nickname) techMap.set(db.nickname, db.nickname)
+    })
+    
+    // Frameworks
+    project.framework?.forEach((fw: FrameworkDTO) => {
+      if (fw?.nickname) techMap.set(fw.nickname, fw.nickname)
+    })
+    
+    // Libraries
+    project.libraries?.forEach((lib: LibraryDTO) => {
+      if (lib?.nickname) techMap.set(lib.nickname, lib.nickname)
+    })
+    
+    // Tools
+    project.tools?.forEach((tool: ToolDTO) => {
+      if (tool?.nickname) techMap.set(tool.nickname, tool.nickname)
+    })
+    
+    // Cloud Platforms
+    project.cloudPlatforms?.forEach((cloud: CloudPlatformDTO) => {
+      if (cloud?.nickname) techMap.set(cloud.nickname, cloud.nickname)
+    })
   }
+
+  const options = Array.from(techMap.values()).map(nickname => ({
+    label: nickname,
+    value: nickname,
+  }))
+  
   return options.sort((a, b) => a.label.localeCompare(b.label))
 })
 
 const selectedTech = ref<string | null>(null)
 
 const filteredProjects = computed(() => {
-  if (!selectedTech.value) return allProjects.value
-  return allProjects.value.filter((p) =>
-    p.technologies.includes(selectedTech.value!)
-  )
+  if (!selectedTech.value) return allProjects
+
+  return allProjects.filter((project) => {
+    if (!project) return false
+    
+    return (
+      project.languages?.some(l => l?.nickname === selectedTech.value) ||
+      project.runtimes?.some(r => r?.nickname === selectedTech.value) ||
+      project.databases?.some(d => d?.nickname === selectedTech.value) ||
+      project.framework?.some(f => f?.nickname === selectedTech.value) ||
+      project.libraries?.some(l => l?.nickname === selectedTech.value) ||
+      project.tools?.some(t => t?.nickname === selectedTech.value) ||
+      project.cloudPlatforms?.some(c => c?.nickname === selectedTech.value)
+    )
+  })
 })
 </script>
 
@@ -65,7 +110,7 @@ const filteredProjects = computed(() => {
         <div class="grid-cards" v-if="filteredProjects.length">
           <ProjectCard
             v-for="project in filteredProjects"
-            :key="project.id"
+            :key="project?.title"
             :project="project"
           />
         </div>
