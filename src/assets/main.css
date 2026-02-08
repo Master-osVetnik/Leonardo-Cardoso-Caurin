@@ -1,0 +1,314 @@
+/* ====================================
+   GLOBAL STYLES
+   ==================================== */
+
+:root {
+  --header-height: 4rem;
+  --content-max-width: 1200px;
+  --section-padding: 4rem 1.5rem;
+  
+  --color-text-desc: rgb(0, 124, 185);      /* Cinza mais escuro, legibilidade */
+
+  /* Light Mode - Mais sofisticado */
+  --color-bg-gradient-from: #fdfbfb;
+  --color-bg-gradient-to: #f7f4f9;
+  --color-accent-primary: rgb(0, 221, 221);      /* Indigo mais vibrante */
+  --color-accent-primary-alpha: rgba(0, 221, 221, 0.05);
+  --color-accent-primary-beta: rgba(0, 221, 221, 0.15);
+  --color-accent-secondary: #ec4899;    /* Pink pra dar contraste */
+  --color-accent-tertiary: #14b8a6;     /* Teal mais saturado */
+  --color-text-primary: #0f172a;        /* Quase preto, mais contraste */
+  --color-text-secondary: #475569;      /* Cinza mais escuro, legibilidade */
+  --color-border: rgba(71, 85, 105, 0.12);
+  
+  /* Extras úteis */
+  --color-surface: #ffffff;
+  --color-surface-hover: #f8fafc;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+html.p-dark {
+  /* Dark Mode - Mais profundo e contrastante */
+  --color-bg-gradient-from: #0a0a0f;    /* Quase preto */
+  --color-bg-gradient-to: #1a1625;      /* Roxo muito escuro */
+  --color-accent-primary: #00dddd;      /* Indigo mais claro no dark */
+  --color-accent-secondary: #f472b6;    /* Pink mais claro */
+  --color-accent-tertiary: #2dd4bf;     /* Teal brilhante */
+  --color-text-primary: #f8fafc;        /* Branco mais puro */
+  --color-text-secondary: #cbd5e1;      /* Cinza mais claro */
+  --color-border: rgba(203, 213, 225, 0.1);
+  
+  /* Extras dark mode */
+  --color-surface: #1e1e2e;
+  --color-surface-hover: #2a2a3c;
+  --color-success: #34d399;
+  --color-warning: #fbbf24;
+  --color-error: #f87171;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--color-bg-gradient-from) 0%, var(--color-bg-gradient-to) 100%);
+  background-attachment: fixed;
+  color: var(--color-text-primary);
+}
+
+/* Animated gradient overlay for visual interest */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 50% 10%, rgba(6, 182, 212, 0.06) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+html.p-dark body::before {
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(96, 165, 250, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(167, 139, 250, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 50% 10%, rgba(34, 211, 238, 0.02) 0%, transparent 50%);
+}
+
+/* ====================================
+   LAYOUT UTILITIES
+   ==================================== */
+
+.container {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.section {
+  padding: var(--section-padding);
+  position: relative;
+  z-index: 1;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 2rem;
+}
+
+/* ====================================
+   GRID UTILITIES
+   ==================================== */
+
+.grid-cards {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+}
+
+.grid-cards-sm {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+/* ====================================
+   CARDS & SURFACES
+   ==================================== */
+
+.card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.1), 
+    0 2px 4px -2px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(59, 130, 246, 0);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  padding: 2px;
+  background: linear-gradient(135deg, 
+    rgba(59, 130, 246, 0.3), 
+    rgba(139, 92, 246, 0.3), 
+    rgba(6, 182, 212, 0.3)
+  );
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 
+    0 20px 25px -5px rgba(0, 0, 0, 0.1), 
+    0 10px 10px -5px rgba(0, 0, 0, 0.04),
+    0 0 0 1px rgba(59, 130, 246, 0.2);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.p-dark .card {
+  background: rgba(30, 41, 59, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.3), 
+    0 2px 4px -2px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(96, 165, 250, 0);
+}
+
+.p-dark .card::before {
+  background: linear-gradient(135deg, 
+    rgba(96, 165, 250, 0.4), 
+    rgba(167, 139, 250, 0.4), 
+    rgba(34, 211, 238, 0.4)
+  );
+}
+
+.p-dark .card:hover {
+  box-shadow: 
+    0 20px 25px -5px rgba(0, 0, 0, 0.5), 
+    0 10px 10px -5px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(96, 165, 250, 0.3);
+}
+
+/* ====================================
+   RESPONSIVE
+   ==================================== */
+
+@media (max-width: 768px) {
+  :root {
+    --section-padding: 2rem 1rem;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .grid-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ====================================
+   PAGE TRANSITIONS
+   ==================================== */
+
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+}
+
+/* ====================================
+   LINKS
+   ==================================== */
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ====================================
+   BADGE / TAG
+   ==================================== */
+
+.tech-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  background: linear-gradient(135deg, 
+    rgba(59, 130, 246, 0.2), 
+    rgba(139, 92, 246, 0.2)
+  );
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: var(--color-accent-primary);
+  transition: all 0.2s ease;
+}
+
+.tech-badge:hover {
+  background: linear-gradient(135deg, 
+    rgba(59, 130, 246, 0.3), 
+    rgba(139, 92, 246, 0.3)
+  );
+  border-color: rgba(59, 130, 246, 0.5);
+  transform: scale(1.05);
+}
+
+html.p-dark .tech-badge {
+  background: linear-gradient(135deg, 
+    rgba(96, 165, 250, 0.2), 
+    rgba(167, 139, 250, 0.2)
+  );
+  border: 1px solid rgba(96, 165, 250, 0.3);
+  color: var(--color-accent-primary);
+}
+
+html.p-dark .tech-badge:hover {
+  background: linear-gradient(135deg, 
+    rgba(96, 165, 250, 0.3), 
+    rgba(167, 139, 250, 0.3)
+  );
+  border-color: rgba(96, 165, 250, 0.5);
+}
