@@ -110,4 +110,10 @@ export default {
       },
     },
   },
+  notFound: {
+    title: 'Página Não Encontrada',
+    description: 'Desculpe, a página que você está procurando não existe ou foi movida.',
+    backHome: 'Voltar ao Início',
+    goBack: 'Voltar',
+  },
 }

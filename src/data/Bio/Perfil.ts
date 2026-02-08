@@ -1,5 +1,6 @@
 import type { LocalizedText } from '../types'
 import { t } from '../types'
+import { imageUrl } from '@/utils/urls'
 
 // ====================================
 // TYPES
@@ -27,7 +28,7 @@ export interface PerfilDTO {
 // ====================================
 
 const Perfil: PerfilDTO = {
-  avatar: '/images/Perfil/Leonardo.jpg',
+  avatar: imageUrl('Perfil/Leonardo.jpg'),
   fullName: 'Leonardo Cardoso Caurin',
   firstName: 'Leonardo',
   lastName: 'Cardoso Caurin',

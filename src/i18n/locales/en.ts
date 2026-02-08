@@ -110,4 +110,10 @@ export default {
       },
     },
   },
+  notFound: {
+    title: 'Page Not Found',
+    description: 'Sorry, the page you are looking for does not exist or has been moved.',
+    backHome: 'Back to Home',
+    goBack: 'Go Back',
+  },
 }

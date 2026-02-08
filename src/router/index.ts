@@ -43,6 +43,11 @@ const router = createRouter({
       name: 'frameworks',
       component: () => import('@/pages/FrameworksPage.vue'),
     },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'not-found',
+      component: () => import('@/pages/NotFoundPage.vue'),
+    },
   ],
   scrollBehavior(_to, _from, savedPosition) {
     if (savedPosition) return savedPosition
