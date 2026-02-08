@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  
+  <!-- Texto com efeito neon -->
+  <text x="32" y="46" 
+        font-family="monospace" 
+        font-size="38" 
+        font-weight="bold"
+        fill="#007cb9" 
+        text-anchor="middle"
+  >LCC</text>
+
+</svg>

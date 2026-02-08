@@ -2,18 +2,25 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Portfólio de Leonardo Cardoso Caurin - Desenvolvedor Full-stack" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Leonardo Cardoso Caurin | Developer</title>
+    <meta name="description" content="Portfólio de Leonardo Cardoso Caurin" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <title>Leonardo Cardoso Caurin | Full-stack Developer</title>
+
+    <meta property="og:title" content="Leonardo Cardoso Caurin | Developer" />
+    <meta property="og:description" content="Portfólio de Leonardo Cardoso Caurin" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="images/Perfil/Leonardo.jpg" />
+
   </head>
   <body>
     <div id="app"></div>
     <script>
-      // Restaura a URL após redirecionamento do 404.html
+      // Ajust URL becuse GitHub Pages serve the app from a subpath
       (function(){
         var redirect = sessionStorage.redirect;
         delete sessionStorage.redirect;
