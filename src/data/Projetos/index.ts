@@ -218,7 +218,7 @@ export const PROJETOS: Record<string, ProjetoBaseDTO> = {
     title: 'Meu Currículo',
     summary: t('Meu currículo online, destacando minha experiência, habilidades e projetos de forma interativa.', 'My online resume, showcasing my experience, skills and projects in an interactive way.'),
     description: t('Desenvolvimento de um currículo online utilizando Vue.js e TypeScript. O projeto apresenta uma interface moderna e responsiva, destacando minha experiência profissional, habilidades técnicas e projetos de forma interativa.', 'Development of an online resume using Vue.js and TypeScript. The project features a modern and responsive interface, highlighting my professional experience, technical skills and projects in an interactive way.'),
-    link: 'https://leonardocaurin.github.io/MeuCurriculo/',
+    link: 'https://master-osvetnik.github.io/Leonardo-Cardoso-Caurin/',
     
     tags: ['vue', 'typescript', 'resume', 'personal-project'],
     //images: [],

@@ -51,3 +51,5 @@ export const CATEGORY: Record<string, CategorBaseDTO> = {
     title: t('Educação', 'Education'),
   },
 }
+
+export type CategoryDTO = CategorBaseDTO | undefined

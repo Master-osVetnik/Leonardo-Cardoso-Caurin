@@ -1,8 +1,12 @@
 <script setup lang="ts">
 import { useLocalized } from '@/composables/useLocalized'
 import Card from 'primevue/card'
-import type { Empresa } from '@/data/Trabalhos'
-import { AREAS } from '@/data/Trabalhos'
+
+
+import {
+  CATEGORY, // type CategoryDTO,
+  type Empresa,
+} from '@/data/Works/Index'
 
 const props = defineProps<{
   company: Empresa
@@ -10,9 +14,9 @@ const props = defineProps<{
 
 const { resolveText } = useLocalized()
 
-const areaName = AREAS[props.company.area]
-  ? resolveText(AREAS[props.company.area]!.name)
-  : props.company.area
+const areaName = CATEGORY[props.company.category]
+  ? resolveText(CATEGORY[props.company.category]!.title)
+  : props.company.category
 </script>
 
 <template>

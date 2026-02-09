@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Card from 'primevue/card'
-import type { Cliente } from '@/data/Trabalhos'
+import type { Cliente } from '@/data/Works/Index'
 
 defineProps<{
   client: Cliente
