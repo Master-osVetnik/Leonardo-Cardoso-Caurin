@@ -54,6 +54,15 @@ export interface Tool extends BaseEntity {
   category: 'bundler' | 'testing' | 'linting' | 'versioning' | 'ci-cd'
 }
 
+type CodeType = 'no-code' | 'low-code' | 'full-code'
+type PlatformType = 'open-source' | 'proprietary' | 'cloud-based' | 'saas'
+export interface Platform extends BaseEntity {
+  languages: string[],
+  layer: string,
+  type: PlatformType,
+  codeType: CodeType,
+}
+
 export interface TechDatabase {
   languages: Record<string, Language>
   runtimes: Record<string, Runtime>
@@ -64,4 +73,5 @@ export interface TechDatabase {
   libraries: Record<string, Library>
   cloudPlatforms: Record<string, CloudPlatform>
   tools: Record<string, Tool>
+  platforms: Record<string, Platform>
 }

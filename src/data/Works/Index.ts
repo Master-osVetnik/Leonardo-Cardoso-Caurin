@@ -1,5 +1,12 @@
-import type { LocalizedText } from './types'
-import { t } from './types'
+
+import type { LocalizedText } from '../types'
+import { t } from '../types'
+
+import { CATEGORY, type CategoryDTO } from './Category'
+
+export {
+    CATEGORY, type CategoryDTO,
+}
 
 // ====================================
 // TYPES
@@ -13,7 +20,7 @@ export interface Area {
 export interface Empresa {
   id: string
   title: string
-  area: string // Area id
+  category: string // Category id
   cnpj?: string
   site?: string
   linkedin?: string
@@ -30,41 +37,6 @@ export interface Cliente {
 }
 
 // ====================================
-// DATA: AREAS
-// ====================================
-
-export const AREAS: Record<string, Area> = {
-  marketingDigital: {
-    id: 'marketingDigital',
-    name: t('Marketing Digital', 'Digital Marketing'),
-  },
-  contabilidade: {
-    id: 'contabilidade',
-    name: t('Contabilidade', 'Accounting'),
-  },
-  publicidade: {
-    id: 'publicidade',
-    name: t('Publicidade', 'Advertising'),
-  },
-  assistenciaTecnica: {
-    id: 'assistenciaTecnica',
-    name: t('Assistência Técnica', 'Technical Support'),
-  },
-  mecanica: {
-    id: 'mecanica',
-    name: t('Mecânica', 'Mechanics'),
-  },
-  restaurante: {
-    id: 'restaurante',
-    name: t('Restaurante', 'Restaurant'),
-  },
-  educacao: {
-    id: 'educacao',
-    name: t('Educação', 'Education'),
-  },
-}
-
-// ====================================
 // DATA: EMPRESAS
 // ====================================
 
@@ -72,7 +44,7 @@ export const EMPRESAS: Record<string, Empresa> = {
   coest: {
     id: 'coest',
     title: 'Coest Consultoria',
-    area: 'marketingDigital',
+    category: 'marketingDigital',
     cnpj: '00.000.000/0000-00',
     site: 'https://coest.com.br/',
     linkedin: '',
@@ -84,7 +56,7 @@ export const EMPRESAS: Record<string, Empresa> = {
   vila: {
     id: 'vila',
     title: 'Vila Contabil',
-    area: 'contabilidade',
+    category: 'contabilidade',
     cnpj: '00.000.000/0000-00',
     site: 'https://vilacontabil.com.br/',
     linkedin: '',
@@ -96,7 +68,7 @@ export const EMPRESAS: Record<string, Empresa> = {
   mind: {
     id: 'mind',
     title: 'Mindvertising',
-    area: 'marketingDigital',
+    category: 'marketingDigital',
     cnpj: '00.000.000/0000-00',
     site: 'https://mindvertising.com.br/',
     linkedin: '',

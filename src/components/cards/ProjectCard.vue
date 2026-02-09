@@ -3,38 +3,60 @@ import { useRouter } from 'vue-router'
 import { useLocalized } from '@/composables/useLocalized'
 import Card from 'primevue/card'
 import Tag from 'primevue/tag'
-import type { Projeto } from '@/data/Projetos'
-import { TECH_DATABASE } from '@/data/Tecnologias'
+import { computed } from 'vue'
+import type { ProjetoDTO } from '@/data/Projetos'
 
 const props = defineProps<{
-  project: Projeto
+  project: ProjetoDTO
 }>()
 
 const router = useRouter()
 const { resolveText } = useLocalized()
 
-function getTechName(techId: string): string {
-  for (const category of Object.values(TECH_DATABASE)) {
-    if (techId in category) {
-      const item = (category as Record<string, { nickname: string }>)[techId]
-      return item?.nickname || techId
-    }
-  }
-  return techId
-}
+// Collect all technologies from the project
+const allTechs = computed(() => {
+  if (!props.project) return []
+
+  const techs: Array<{ nickname: string }> = []
+  
+  props.project.languages?.forEach((l) => {
+    if (l?.nickname) techs.push(l)
+  })
+  props.project.runtimes?.forEach((r) => {
+    if (r?.nickname) techs.push(r)
+  })
+  props.project.databases?.forEach((d) => {
+    if (d?.nickname) techs.push(d)
+  })
+  props.project.framework?.forEach((f) => {
+    if (f?.nickname) techs.push(f)
+  })
+  props.project.libraries?.forEach((l) => {
+    if (l?.nickname) techs.push(l)
+  })
+  props.project.tools?.forEach((t) => {
+    if (t?.nickname) techs.push(t)
+  })
+  props.project.cloudPlatforms?.forEach((c) => {
+    if (c?.nickname) techs.push(c)
+  })
+  
+  return techs
+})
 
 function goToProject() {
-  router.push({ name: 'project-detail', params: { id: props.project.id } })
+  if (!props.project?.key) return
+  router.push({ name: 'project-detail', params: { id: props.project.key } })
 }
 </script>
 
 <template>
-  <Card class="project-card" @click="goToProject" role="button" tabindex="0">
+  <Card v-if="project" class="project-card" @click="goToProject" role="button" tabindex="0">
     <template #header>
       <div class="card-image">
         <img
-          v-if="project.image"
-          :src="project.image"
+          v-if="project.images?.[0]"
+          :src="project.images[0]"
           :alt="project.title"
         />
         <div v-else class="card-image-placeholder">
@@ -51,15 +73,15 @@ function goToProject() {
     <template #content>
       <div class="card-tags">
         <Tag
-          v-for="techId in project.technologies.slice(0, 5)"
-          :key="techId"
-          :value="getTechName(techId)"
+          v-for="tech in allTechs.slice(0, 5)"
+          :key="tech.nickname"
+          :value="tech.nickname"
           severity="secondary"
           rounded
         />
         <Tag
-          v-if="project.technologies.length > 5"
-          :value="`+${project.technologies.length - 5}`"
+          v-if="allTechs.length > 5"
+          :value="`+${allTechs.length - 5}`"
           severity="info"
           rounded
         />

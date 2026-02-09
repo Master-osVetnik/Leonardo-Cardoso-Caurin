@@ -1,18 +1,17 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
-import { useLocalized } from '@/composables/useLocalized'
-import { useRouter } from 'vue-router'
-import Button from 'primevue/button'
-import Avatar from 'primevue/avatar'
-import Perfil from '@/data/Bio/Perfil'
-import { getFeaturedProjects } from '@/data/Projetos'
-import ProjectCard from '@/components/cards/ProjectCard.vue'
+  import { useI18n } from 'vue-i18n'
+  import { useLocalized } from '@/composables/useLocalized'
+  import { useRouter } from 'vue-router'
+  import Button from 'primevue/button'
+  import Avatar from 'primevue/avatar'
+  import Perfil from '@/data/Bio/Perfil'
 
-const { t } = useI18n()
-const { resolveText } = useLocalized()
-const router = useRouter()
+  import Projects from '@/components/lists/Projects.vue'
 
-const featured = getFeaturedProjects()
+  const { t } = useI18n()
+  const { resolveText } = useLocalized()
+  const router = useRouter()
+
 </script>
 
 <template>
@@ -60,30 +59,10 @@ const featured = getFeaturedProjects()
       </div>
     </section>
 
-    <!-- FEATURED PROJECTS SECTION -->
-    <section class="projects-section section" v-if="featured.length">
-      <div class="container">
-        <h2 class="section-title">{{ t('home.projectsSection.title') }}</h2>
-        <p class="section-subtitle">{{ t('home.projectsSection.subtitle') }}</p>
-        <div class="grid-cards">
-          <ProjectCard
-            v-for="project in featured"
-            :key="project.id"
-            :project="project"
-          />
-        </div>
-        <div class="section-footer">
-          <Button
-            :label="t('common.viewAll')"
-            icon="pi pi-arrow-right"
-            iconPos="right"
-            severity="secondary"
-            outlined
-            @click="router.push('/projects')"
-          />
-        </div>
-      </div>
-    </section>
+    <Projects 
+      :filter="{ featured: true }"
+      :showFilters="false"
+    />
   </div>
 </template>
 

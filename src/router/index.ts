@@ -29,19 +29,9 @@ const router = createRouter({
       component: () => import('@/pages/TechPage.vue'),
     },
     {
-      path: '/tech/:category/:id',
+      path: '/tech/:key',
       name: 'tech-detail',
       component: () => import('@/pages/TechDetailPage.vue'),
-    },
-    {
-      path: '/tech/languages',
-      name: 'languages',
-      component: () => import('@/pages/LanguagesPage.vue'),
-    },
-    {
-      path: '/tech/frameworks',
-      name: 'frameworks',
-      component: () => import('@/pages/FrameworksPage.vue'),
     },
     {
       path: '/:pathMatch(.*)*',
