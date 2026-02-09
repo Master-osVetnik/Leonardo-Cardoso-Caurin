@@ -45,7 +45,8 @@ const allTechs = computed(() => {
 })
 
 function goToProject() {
-  router.push({ name: 'project-detail', params: { id: props?.project?.title } })
+  if (!props.project?.key) return
+  router.push({ name: 'project-detail', params: { id: props.project.key } })
 }
 </script>
 

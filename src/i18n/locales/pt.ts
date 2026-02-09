@@ -24,6 +24,15 @@ export default {
     darkMode: 'Modo escuro',
     lightMode: 'Modo claro',
     language: 'Idioma',
+    languages: 'Linguagens',
+    runtimes: 'Runtimes',
+    databases: 'Bancos de Dados',
+    frameworks: 'Frameworks',
+    libraries: 'Bibliotecas',
+    tools: 'Ferramentas',
+    cloudPlatforms: 'Plataformas Cloud',
+    plataforms: 'Plataformas',
+    search: 'Buscar',
   },
   home: {
     greeting: 'Olá, eu sou',
@@ -57,9 +66,17 @@ export default {
     detail: {
       description: 'Descrição',
       techUsed: 'Tecnologias Utilizadas',
+      gallery: 'Galeria',
       relatedWork: 'Empresa',
       relatedClient: 'Cliente',
       visitSite: 'Visitar Site',
+    },
+    status: {
+      completed: 'Concluído',
+      inProgress: 'Em Andamento',
+      planned: 'Planejado',
+      onHold: 'Pausado',
+      cancelled: 'Cancelado',
     },
   },
   tech: {
@@ -82,6 +99,8 @@ export default {
       libraries: 'Bibliotecas Relacionadas',
       databases: 'Bancos de Dados Compatíveis',
       projects: 'Projetos que Usam esta Tecnologia',
+      packageManagers: 'Gerenciadores de Pacotes',
+      platforms: 'Plataformas',
     },
     sections: {
       languages: 'Linguagens',
@@ -91,6 +110,8 @@ export default {
       tools: 'Ferramentas',
       cloud: 'Cloud',
       runtimes: 'Runtimes',
+      packageManagers: 'Gerenciadores de Pacotes',
+      platforms: 'Plataformas',
     },
     languagesPage: {
       title: 'Linguagens de Programação',

@@ -24,6 +24,15 @@ export default {
     darkMode: 'Dark mode',
     lightMode: 'Light mode',
     language: 'Language',
+    languages: 'Languages',
+    runtimes: 'Runtimes',
+    databases: 'Databases',
+    frameworks: 'Frameworks',
+    libraries: 'Libraries',
+    tools: 'Tools',
+    cloudPlatforms: 'Cloud Platforms',
+    plataforms: 'Platforms',
+    search: 'Search',
   },
   home: {
     greeting: 'Hi, I\'m',
@@ -57,9 +66,17 @@ export default {
     detail: {
       description: 'Description',
       techUsed: 'Technologies Used',
+      gallery: 'Gallery',
       relatedWork: 'Company',
       relatedClient: 'Client',
       visitSite: 'Visit Site',
+    },
+    status: {
+      completed: 'Completed',
+      inProgress: 'In Progress',
+      planned: 'Planned',
+      onHold: 'On Hold',
+      cancelled: 'Cancelled',
     },
   },
   tech: {
@@ -82,6 +99,8 @@ export default {
       libraries: 'Related Libraries',
       databases: 'Compatible Databases',
       projects: 'Projects Using this Technology',
+      packageManagers: 'Package Managers',
+      platforms: 'Platforms',
     },
     sections: {
       languages: 'Languages',
@@ -91,6 +110,8 @@ export default {
       tools: 'Tools',
       cloud: 'Cloud',
       runtimes: 'Runtimes',
+      packageManagers: 'Package Managers',
+      platforms: 'Platforms',
     },
     languagesPage: {
       title: 'Programming Languages',

@@ -1,11 +1,11 @@
 
 
 export const getTableData = (table: Record<string, any>) => {
-    return (Object.entries(table).map(([key, value]) => ({
-            id: key,
-            ...value,
-        })
-    )) || []
+    return (
+        Object.entries(table).map(
+            ([_key, value]) => (value)
+        )
+    ) || []
 }
 
 export default getTableData

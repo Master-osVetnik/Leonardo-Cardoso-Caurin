@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import PrimeVue from 'primevue/config'
 import Aura from '@primeuix/themes/aura'
 import 'primeicons/primeicons.css'
+import 'devicon/devicon.min.css'
 import './assets/main.css'
 
 import App from './App.vue'

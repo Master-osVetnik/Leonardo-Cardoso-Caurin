@@ -39,7 +39,9 @@ const activeTab = ref('0')
     <!-- TABS SECTION -->
     <section class="about-tabs section">
       <div class="container">
-        <Tabs v-model:value="activeTab">
+        <Tabs 
+          v-model:value="activeTab"
+        >
           <TabList>
             <Tab value="0">
               <i class="pi pi-briefcase" />
@@ -49,10 +51,12 @@ const activeTab = ref('0')
               <i class="pi pi-heart" />
               {{ t('about.tabs.personal') }}
             </Tab>
+            <!--
             <Tab value="2">
               <i class="pi pi-graduation-cap" />
               {{ t('about.tabs.teacher') }}
             </Tab>
+            -->
           </TabList>
           <TabPanels>
             <TabPanel value="0">
@@ -65,11 +69,13 @@ const activeTab = ref('0')
                 <p>{{ resolveText(Perfil.personalBio) }}</p>
               </div>
             </TabPanel>
+            <!--
             <TabPanel value="2">
               <div class="tab-content">
                 <p>{{ resolveText(Perfil.teacherBio) }}</p>
               </div>
             </TabPanel>
+            -->
           </TabPanels>
         </Tabs>
       </div>
@@ -105,6 +111,10 @@ const activeTab = ref('0')
 </template>
 
 <style scoped>
+.about-tabs{
+  background: transparent;
+}
+
 .about-hero-grid {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -137,7 +147,7 @@ const activeTab = ref('0')
 }
 
 :global(html.p-dark) .about-history {
-  background: rgba(255, 255, 255, 0.02);
+  background: transparent;
 }
 
 .history-grid {
@@ -171,11 +181,10 @@ const activeTab = ref('0')
 
 .history-divider {
   width: 1px;
-  background: var(--p-surface-200);
 }
 
 :global(html.p-dark) .history-divider {
-  background: rgba(255, 255, 255, 0.1);
+  background: transparent
 }
 
 @media (max-width: 768px) {

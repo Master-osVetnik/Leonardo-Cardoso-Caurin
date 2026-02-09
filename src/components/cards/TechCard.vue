@@ -1,76 +1,38 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+
 import { useRouter } from 'vue-router'
+
 import { useLocalized } from '@/composables/useLocalized'
 import Card from 'primevue/card'
-import { TECH_DATABASE } from '@/data/Tecnologias'
-import type { BaseEntity } from '@/data/Tecnologias/types'
 
 const props = defineProps<{
-  tech: BaseEntity & { nickname: string }
-  category?: string
-  techId?: string
+  tech: { key?: string; nickname: string; description?: { pt: string; en: string }; icon?: string }
+  subtitle?: string
 }>()
 
 const router = useRouter()
 const { resolveText } = useLocalized()
 
-// Descobrir categoria e ID da tecnologia
-const techInfo = computed(() => {
-  // Se categoria e ID foram passados, usar diretamente
-  if (props.category && props.techId) {
-    return { category: props.category, id: props.techId }
-  }
-
-  // Caso contrário, buscar nos dados
-  const nickname = props.tech.nickname
-
-  // Buscar em cada categoria
-  for (const [id, lang] of Object.entries(TECH_DATABASE.languages)) {
-    if (lang.nickname === nickname) return { category: 'languages', id }
-  }
-  for (const [id, fw] of Object.entries(TECH_DATABASE.frameworks)) {
-    if (fw.nickname === nickname) return { category: 'frameworks', id }
-  }
-  for (const [id, lib] of Object.entries(TECH_DATABASE.libraries)) {
-    if (lib.nickname === nickname) return { category: 'libraries', id }
-  }
-  for (const [id, db] of Object.entries(TECH_DATABASE.databases)) {
-    if (db.nickname === nickname) return { category: 'databases', id }
-  }
-  for (const [id, rt] of Object.entries(TECH_DATABASE.runtimes)) {
-    if (rt.nickname === nickname) return { category: 'runtimes', id }
-  }
-  for (const [id, tool] of Object.entries(TECH_DATABASE.tools)) {
-    if (tool.nickname === nickname) return { category: 'tools', id }
-  }
-  for (const [id, cloud] of Object.entries(TECH_DATABASE.cloudPlatforms)) {
-    if (cloud.nickname === nickname) return { category: 'cloud', id }
-  }
-
-  return null
-})
-
-const handleClick = () => {
-  if (techInfo.value) {
-    router.push(`/tech/${techInfo.value.category}/${techInfo.value.id}`)
+function handleClick() {
+  if (props.tech?.key) {
+    router.push({ name: 'tech-detail', params: { key: props.tech.key } })
   }
 }
 </script>
 
 <template>
-  <Card class="tech-card" :class="{ clickable: !!techInfo }" @click="handleClick">
+  <Card class="tech-card clickable" @click="handleClick" role="button" tabindex="0">
     <template #title>
       <div class="tech-card-header">
-        <i v-if="tech.icon" :class="tech.icon" class="tech-icon" />
+        <i v-if="tech.icon" :class="tech.icon" />
         <span>{{ tech.nickname }}</span>
       </div>
     </template>
-    <template #subtitle v-if="category">
-      {{ category }}
+    <template #subtitle v-if="subtitle">
+      {{ subtitle }}
     </template>
     <template #content>
-      <p class="tech-description">{{ resolveText(tech.description) }}</p>
+      <p v-if="tech.description" class="tech-description">{{ resolveText(tech.description) }}</p>
     </template>
   </Card>
 </template>

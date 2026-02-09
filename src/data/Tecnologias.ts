@@ -1,3 +1,3 @@
 ﻿// Barrel re-export from new modular location
-export * from './Tecnologias/index'
-export type * from './Tecnologias/types'
+export * from './Tech/index'
+export type * from './Tech/types'

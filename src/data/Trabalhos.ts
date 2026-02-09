@@ -30,41 +30,6 @@ export interface Cliente {
 }
 
 // ====================================
-// DATA: AREAS
-// ====================================
-
-export const AREAS: Record<string, Area> = {
-  marketingDigital: {
-    id: 'marketingDigital',
-    name: t('Marketing Digital', 'Digital Marketing'),
-  },
-  contabilidade: {
-    id: 'contabilidade',
-    name: t('Contabilidade', 'Accounting'),
-  },
-  publicidade: {
-    id: 'publicidade',
-    name: t('Publicidade', 'Advertising'),
-  },
-  assistenciaTecnica: {
-    id: 'assistenciaTecnica',
-    name: t('Assistência Técnica', 'Technical Support'),
-  },
-  mecanica: {
-    id: 'mecanica',
-    name: t('Mecânica', 'Mechanics'),
-  },
-  restaurante: {
-    id: 'restaurante',
-    name: t('Restaurante', 'Restaurant'),
-  },
-  educacao: {
-    id: 'educacao',
-    name: t('Educação', 'Education'),
-  },
-}
-
-// ====================================
 // DATA: EMPRESAS
 // ====================================
 
